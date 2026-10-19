@@ -1,0 +1,53 @@
+<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>金門機場｜每週航班統計</title><style>
+:root{font-family:system-ui,'Microsoft JhengHei',sans-serif;color:#182c40;background:#f1f5f8}*{box-sizing:border-box}body{margin:0}header{background:#102c41;color:white;padding:40px max(5vw,20px)}header small{letter-spacing:3px;color:#83d8d3}h1{font-size:clamp(26px,4vw,42px);margin:14px 0}header p{color:#c5d4df}main{max-width:1180px;margin:auto;padding:24px}section,.card{background:white;border:1px solid #dde6ed;border-radius:16px;padding:22px;margin-bottom:20px}.notice{background:#fff4d9;border-left:4px solid #d29c21;padding:14px;line-height:1.8}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card b{display:block;font-size:38px;margin:10px 0;color:#126f79}.card span,small{color:#607286}h2{font-size:20px;margin:0 0 18px}.filters{display:flex;flex-wrap:wrap;gap:14px;align-items:end}label{display:grid;gap:7px;font-size:14px}select,input,button{font:inherit;border:1px solid #bbcbd6;border-radius:8px;padding:10px;background:white;color:#183449}button{cursor:pointer}button:hover{background:#e5f6f4}button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #0e9e96}#chart{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;min-width:540px}.chartwrap{overflow:auto}.day{border:0;border-radius:8px;padding:10px 4px;background:#f6f9fc}.day[aria-pressed=true]{outline:2px solid #137b80}.bars{height:175px;display:flex;align-items:end;justify-content:center;gap:5px;margin:14px 0}.bar{width:32%;background:#16858b;border-radius:5px 5px 0 0;position:relative;min-height:2px}.bar.out{background:#477bc9}.bar em{position:absolute;top:-22px;left:0;width:100%;font-style:normal;font-size:12px}.legend{color:#52697a;font-size:14px}.tablewrap{overflow:auto;max-height:520px}table{width:100%;border-collapse:collapse;white-space:nowrap}th,td{padding:12px;text-align:left;border-bottom:1px solid #e4ebf0;font-size:14px}th{background:#edf3f7;position:sticky;top:0}a{color:#176eaa}summary{cursor:pointer;font-weight:700}details p,details li{line-height:1.9}.badge{padding:4px 8px;background:#e4f4f1;border-radius:5px}.cancel{background:#fce7e4;color:#933e2a}footer{padding:20px;text-align:center;color:#667d8f;font-size:13px}textarea{width:100%;height:290px;line-height:1.8;padding:14px;border:1px solid #bdccd5;border-radius:8px}#status{margin:12px 0;color:#566d80}@media(max-width:600px){main{padding:14px}.cards{gap:8px}.card{padding:14px}.card b{font-size:29px}.filters label{flex:1;min-width:120px}section{padding:16px}}
+</style><header><small>KNH / WEEKLY FLIGHT EXPLORER</small><h1>金門機場每週航班統計</h1><p>2026 / 10 / 12 — 10 / 18　星期一至星期日 · 臺灣時間</p></header><main>
+<p class="notice">依官方月班表計算之<strong>預定班次，非實際起降紀錄</strong>。資料整理後內嵌於本頁，自動統計；不會連線更新。已排除班表明列的取消班次，未涵蓋臨時取消、延誤或增班。</p>
+<div class="cards"><div class="card"><span>篩選範圍 · 抵達金門</span><b id="arr">—</b>預定進場班次</div><div class="card"><span>篩選範圍 · 離開金門</span><b id="dep">—</b>預定離場班次</div><div class="card"><span>篩選範圍 · 合計</span><b id="total">—</b>預定起降架次</div></div>
+<section><h2>探索這一週</h2><div class="filters"><label>日期<select id="date"><option value="">全週</option></select></label><label>航空公司<select id="airline"><option value="">全部航空公司</option><option>華信航空</option><option>立榮航空</option></select></label><label>對端機場<select id="route"><option value="">全部航線</option></select></label><label>方向<select id="dir"><option value="">進場與離場</option><option>進場</option><option>離場</option></select></label><label>航班搜尋<input id="query" placeholder="例如 B7-8921"></label><button id="reset">重設篩選</button><button id="export">匯出篩選結果 CSV</button></div><p id="status" aria-live="polite"></p></section>
+<section><h2>每日班次比較</h2><p class="legend">🟩 進場　🟦 離場　｜點選日期查看明細；圖表保留全週，套用其他篩選條件。</p><div class="chartwrap"><div id="chart"></div></div></section>
+<section><h2>航班明細</h2><p>「取消」列保留供查核，不計入卡片與圖表。此頁不提供訂位或即時飛航狀態。</p><div class="tablewrap"><table><thead><tr><th>日期</th><th>航班</th><th>航空公司</th><th>方向</th><th>航線</th><th>班表狀態</th></tr></thead><tbody id="rows"></tbody></table></div></section>
+<section><details open><summary>資料來源與統計方法</summary><p><a href="https://www.kma.gov.tw/UploadFile/20260930112018.pdf" target="_blank" rel="noopener">金門航空站：115 年（2026 年）10 月份班機時刻表 PDF ↗</a><br>整理日期：2026/10/19。日期範圍固定為 2026/10/12–10/18。</p><ul><li>按每一航班的「飛行日期」逐日展開，套用「僅飛」及「取消」備註。每個日期、方向、航班編號只計一次；每次起飛或降落算一架次。</li><li>備註「某日為加班機」表示該日的航班性質，不等於僅在那些日期飛行；只有「僅飛」才限制日期。時間與機型調整不改變班次數。</li><li>10/15 的 B7-8921、B7-8922 列為取消；10/17 納入澎湖 B7-8995、B7-8996。</li><li>進出班次獨立計算。B7-9206 依原表每日、B7-9208 依原表週一四五日計入；不因與對向班次不對稱而自行改表。若原表有誤，須由航空公司確認。</li><li>範圍為該官方月班表列出的民航班機，不代表軍機、所有非定期航班或機場完整實際起降量。</li></ul></details></section>
+<section><details><summary>作業規格文字與操作驗證</summary><p>可選取下方文字複製至作業文字輸入區，並補上自己的網站網址、姓名學號與實測截圖。</p><textarea readonly id="spec">主題：金門機場每週航班統計
+一、設計動機：希望用清楚的圖表了解金門機場一週的進出班次，並能查詢每日與各航線的班機分布。
+二、使用對象：金門居民、旅客及對航空交通有興趣的使用者。
+三、資料範圍：2026/10/12–10/18，依金門航空站2026年10月官方月班表整理；屬預定班次，非實際起降紀錄。資料內嵌並自動統計，無即時API更新。
+四、功能：進場、離場及總班次卡片；每日比較圖；日期、航空公司、對端機場、方向與航班編號篩選；點選圖表日期查看明細；重設篩選；匯出篩選後CSV；來源與規則說明。
+五、計算規則：每日期每方向每航班計一次，依飛行星期與特殊日期展開；取消列保留供查核但排除於統計；進出獨立計算。篩選同步影響卡片和明細，圖表保留七天並套用非日期篩選。
+六、技術：單一index.html包含HTML、CSS、JavaScript與資料；無外部套件，適合GitHub Pages。手機與電腦可用，圖表及表格在窄螢幕可水平捲動。
+七、AI調整過程：從自動抓取實際歷史航班的構想，經資料查找後改用可查證的官方月班表；加入資料性質說明、取消排除與進出獨立統計，避免把預定班表誤當實際起降。
+八、驗收：確認全週統計；選擇10/15高雄航線檢查兩筆取消未列入統計；選擇10/17澎湖確認進出各一班；測試組合篩選、搜尋、重設與CSV下載。請自行實測並記錄結果。
+網站網址：（發布後填入）
+操作截圖：（貼上實際網站截圖）</textarea></details></section></main><footer>KNH · 官方班表資料整理 × 互動統計　／　2026 年 10 月</footer>
+<script>
+'use strict';
+const defs=[];
+function add(route,dir,air,ids,days='1234567',only=null){ids.split(' ').forEach(id=>defs.push({route,dir,airline:air==='AE'?'華信航空':'立榮航空',flight:air+'-'+id,days,only}));}
+add('臺北','進場','AE','1261 1263 2063 1265 2065 1269 1271 1273 2073 1281 1277 1279');
+add('臺北','進場','AE','2069','25');add('臺北','進場','AE','1275','124567');
+add('臺北','進場','B7','8801 8805 8809 8811 8819 8821 8835');add('臺北','進場','B7','9205','147');add('臺北','進場','B7','9207','123467');
+add('臺北','離場','AE','1262 1264 1266 2066 1270 2064 1272 1274 2074 1282 1278 1280');add('臺北','離場','AE','2070','25');add('臺北','離場','AE','1276','124567');
+add('臺北','離場','B7','8802 8806 8812 8820 8816 8822 8836 9206');add('臺北','離場','B7','9208','1457');
+add('臺中','進場','AE','761 771 763 765 767 775 769');add('臺中','進場','B7','8951 8955 8957 8961 8967 8965');
+add('臺中','離場','AE','762 772 764 766 768 776 770');add('臺中','離場','B7','8952 8956 8958 8962 8968 8966');
+add('高雄','進場','AE','301 303 305 307 309');add('高雄','進場','B7','8911 8917 9227 8921 8927');add('高雄','進場','B7','8925','147');
+add('高雄','離場','AE','302 306 304 308 310');add('高雄','離場','B7','8912 8918 9228 8922 8928');add('高雄','離場','B7','8926','147');
+add('嘉義','進場','B7','8901');add('嘉義','離場','B7','8902');
+add('臺南','進場','B7','8981 8985 8991');add('臺南','離場','B7','8982 8986 8992');
+add('澎湖','進場','B7','8995','26',[17]);add('澎湖','離場','B7','8996','26',[17]);
+const dates=Array.from({length:7},(_,i)=>'2026-10-'+(12+i));
+const flights=dates.flatMap((date,i)=>defs.filter(f=>f.days.includes(String(i+1))&&(!f.only||f.only.includes(12+i))).map(f=>({...f,date,cancel:date==='2026-10-15'&&['B7-8921','B7-8922'].includes(f.flight)})));
+const $=id=>document.getElementById(id), weekdays=['一','二','三','四','五','六','日'];
+dates.forEach((d,i)=>$('date').add(new Option(d+'（'+weekdays[i]+'）',d)));
+['臺北','臺中','高雄','嘉義','臺南','澎湖'].forEach(r=>$('route').add(new Option(r,r)));
+function filtered(ignoreDate=false){return flights.filter(f=>(ignoreDate||!$('date').value||f.date===$('date').value)&&['airline','route','dir'].every(k=>!$(k).value||f[k]===$(k).value)&&f.flight.includes($('query').value.trim().toUpperCase()));}
+function counts(fs){const a=fs.filter(f=>!f.cancel);return [a.filter(f=>f.dir==='進場').length,a.filter(f=>f.dir==='離場').length];}
+function render(){const fs=filtered(),[a,d]=counts(fs);$('arr').textContent=a;$('dep').textContent=d;$('total').textContent=a+d;$('status').textContent=`顯示 ${fs.length} 筆紀錄，其中 ${fs.filter(f=>f.cancel).length} 筆班表取消，不計入統計。`;
+const all=filtered(true),daily=dates.map(date=>counts(all.filter(f=>f.date===date))),max=Math.max(1,...daily.flat());
+$('chart').innerHTML=daily.map(([a,d],i)=>`<button class="day" data-date="${dates[i]}" aria-pressed="${$('date').value===dates[i]}" aria-label="10月${12+i}日，進場${a}班、離場${d}班，點選查看"><div class="bars"><div class="bar" style="height:${a/max*140}px"><em>${a}</em></div><div class="bar out" style="height:${d/max*140}px"><em>${d}</em></div></div>10/${12+i}<br><small>週${weekdays[i]}</small></button>`).join('');
+$('chart').querySelectorAll('button').forEach(b=>b.onclick=()=>{$('date').value=b.dataset.date;render();});
+$('rows').innerHTML=fs.length?fs.map(f=>`<tr><td>${f.date}</td><td><strong>${f.flight}</strong></td><td>${f.airline}</td><td>${f.dir}</td><td>${f.dir==='進場'?f.route+' → 金門':'金門 → '+f.route}</td><td><span class="badge ${f.cancel?'cancel':''}">${f.cancel?'班表取消':'預定'}</span></td></tr>`).join(''):'<tr><td colspan="6">沒有符合條件的航班，請調整篩選。</td></tr>';}
+['date','airline','route','dir','query'].forEach(id=>$(id).addEventListener('input',render));
+$('reset').onclick=()=>{['date','airline','route','dir','query'].forEach(id=>$(id).value='');render();};
+$('export').onclick=()=>{const rows=[['日期','航班','航空公司','方向','對端機場','班表狀態'],...filtered().map(f=>[f.date,f.flight,f.airline,f.dir,f.route,f.cancel?'取消':'預定'])];const csv='\uFEFF'+rows.map(r=>r.map(v=>'"'+v.replaceAll('"','""')+'"').join(',')).join('\r\n');const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='kinmen_20261012_1018.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+render();
+</script></html>
