@@ -1,6 +1,44 @@
 <!doctype html><html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>金門機場｜每週航班統計</title><style>
 :root{font-family:system-ui,'Microsoft JhengHei',sans-serif;color:#182c40;background:#f1f5f8}*{box-sizing:border-box}body{margin:0}header{background:#102c41;color:white;padding:40px max(5vw,20px)}header small{letter-spacing:3px;color:#83d8d3}h1{font-size:clamp(26px,4vw,42px);margin:14px 0}header p{color:#c5d4df}main{max-width:1180px;margin:auto;padding:24px}section,.card{background:white;border:1px solid #dde6ed;border-radius:16px;padding:22px;margin-bottom:20px}.notice{background:#fff4d9;border-left:4px solid #d29c21;padding:14px;line-height:1.8}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card b{display:block;font-size:38px;margin:10px 0;color:#126f79}.card span,small{color:#607286}h2{font-size:20px;margin:0 0 18px}.filters{display:flex;flex-wrap:wrap;gap:14px;align-items:end}label{display:grid;gap:7px;font-size:14px}select,input,button{font:inherit;border:1px solid #bbcbd6;border-radius:8px;padding:10px;background:white;color:#183449}button{cursor:pointer}button:hover{background:#e5f6f4}button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #0e9e96}#chart{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;min-width:540px}.chartwrap{overflow:auto}.day{border:0;border-radius:8px;padding:10px 4px;background:#f6f9fc}.day[aria-pressed=true]{outline:2px solid #137b80}.bars{height:175px;display:flex;align-items:end;justify-content:center;gap:5px;margin:14px 0}.bar{width:32%;background:#16858b;border-radius:5px 5px 0 0;position:relative;min-height:2px}.bar.out{background:#477bc9}.bar em{position:absolute;top:-22px;left:0;width:100%;font-style:normal;font-size:12px}.legend{color:#52697a;font-size:14px}.tablewrap{overflow:auto;max-height:520px}table{width:100%;border-collapse:collapse;white-space:nowrap}th,td{padding:12px;text-align:left;border-bottom:1px solid #e4ebf0;font-size:14px}th{background:#edf3f7;position:sticky;top:0}a{color:#176eaa}summary{cursor:pointer;font-weight:700}details p,details li{line-height:1.9}.badge{padding:4px 8px;background:#e4f4f1;border-radius:5px}.cancel{background:#fce7e4;color:#933e2a}footer{padding:20px;text-align:center;color:#667d8f;font-size:13px}textarea{width:100%;height:290px;line-height:1.8;padding:14px;border:1px solid #bdccd5;border-radius:8px}#status{margin:12px 0;color:#566d80}@media(max-width:600px){main{padding:14px}.cards{gap:8px}.card{padding:14px}.card b{font-size:29px}.filters label{flex:1;min-width:120px}section{padding:16px}}
-</style><header><small>KNH / WEEKLY FLIGHT EXPLORER</small><h1>金門機場每週航班統計</h1><p>2026 / 10 / 12 — 10 / 18　星期一至星期日 · 臺灣時間</p></header><main>
+
+/* 金門海島與閩南建築視覺 */
+:root{background:#f6f2e9;color:#243d43}
+header{position:relative;overflow:hidden;background:linear-gradient(115deg,#133d48,#236877);padding-bottom:30px}
+header small{color:#ebc689}header h1{position:relative;z-index:1;letter-spacing:2px}header p{position:relative;z-index:1}
+header:after{content:"";position:absolute;right:-80px;top:-150px;width:430px;height:430px;border:1px solid #ffffff18;border-radius:50%;box-shadow:0 0 0 45px #ffffff05,0 0 0 90px #ffffff04;pointer-events:none}
+.kinmen-scene{position:relative;z-index:1;max-width:1180px;margin:24px auto 0;display:grid;grid-template-columns:1fr 1.3fr;align-items:center;gap:24px}
+.island-caption{border-left:3px solid #dba967;padding-left:18px;line-height:1.9;color:#e4eff0}
+.island-caption strong{font-size:23px;display:block;color:#ffe1a8;font-weight:600;letter-spacing:3px}
+.island-caption span{font-size:14px;color:#c9e1e3}
+.kinmen-art{width:100%;height:auto;max-height:180px;display:block}
+.local-strip{display:flex;align-items:center;gap:12px;padding:14px 18px;background:#eee6d7;border:1px solid #e0d3bc;border-radius:12px;margin-bottom:18px}
+.guardian-icon{flex:none;width:54px;height:54px}.local-strip strong{color:#85543d;display:block;margin-bottom:4px}.local-strip span{font-size:13px;color:#65746c}
+section,.card{border-color:#e3ddd1}.card b{color:#236b70}.card{border-top:3px solid #bc7256}
+.day{background:#f5f3ed}.day:hover{background:#ede7db}th{background:#eee9df}.notice{background:#fff5df}
+footer{background:#eae3d5;color:#667568;letter-spacing:1px}
+@media(max-width:650px){.kinmen-scene{grid-template-columns:1fr;gap:8px}.island-caption strong{font-size:20px}.kinmen-art{max-height:135px}.local-strip{padding:12px}}
+
+</style><header><small>KNH / WEEKLY FLIGHT EXPLORER</small><h1>金門機場每週航班統計</h1><p>2026 / 10 / 12 — 10 / 18　星期一至星期日 · 臺灣時間</p><div class="kinmen-scene"><div class="island-caption"><strong>海風起，從金門出發。</strong><span>燕尾紅磚、風獅守望，把海島日常帶進每一次起降。</span></div>
+<svg class="kinmen-art" viewBox="0 0 640 190" role="img" aria-label="金門意象插畫：燕尾屋脊、紅磚古厝、海浪與飛機">
+<circle cx="520" cy="46" r="29" fill="#efd09b"/>
+<path d="M0 153 Q80 125 160 148 T320 145 T480 149 T640 140 V190 H0Z" fill="#78b4b3" opacity=".35"/>
+<path d="M0 175 Q80 150 160 171 T320 168 T480 173 T640 166" fill="none" stroke="#a7d8d0" stroke-width="2" opacity=".7"/>
+<path d="M65 145 V93 H251 V145Z" fill="#bc7457"/><path d="M76 145 V103 H240 V145" fill="none" stroke="#dca480" stroke-width="3"/>
+<path d="M48 95 Q71 91 72 63 Q90 87 126 78 L159 65 L191 78 Q229 87 247 63 Q247 88 268 95Z" fill="#e6c8a0"/>
+<path d="M48 95 Q71 91 72 63 Q90 87 126 78 L159 65 L191 78 Q229 87 247 63 Q247 88 268 95" fill="none" stroke="#713f33" stroke-width="6" stroke-linejoin="round"/>
+<path d="M137 145 V112 Q159 95 181 112 V145" fill="#3b5350"/><path d="M159 108 V145" stroke="#c7986a" stroke-width="2"/>
+<g fill="#f0d3a8"><rect x="94" y="112" width="20" height="21"/><rect x="204" y="112" width="20" height="21"/></g>
+<g stroke="#92553e" opacity=".7"><path d="M76 106 H131 M187 106 H239 M76 137 H131 M187 137 H239"/></g>
+<path d="M297 145 V109 H423 V145Z" fill="#cf9570"/><path d="M283 111 Q302 106 303 88 Q318 107 344 97 L360 87 L378 97 Q404 106 418 88 Q419 107 437 111Z" fill="#e8c59b" stroke="#815240" stroke-width="4"/>
+<path d="M349 145 V119 H371 V145" fill="#45635d"/>
+<path d="M468 147 Q482 128 480 106 Q465 119 465 129 M480 108 Q498 122 500 137 M480 108 Q477 88 460 80 M480 108 Q492 88 508 88" fill="none" stroke="#a4bd98" stroke-width="5" stroke-linecap="round"/>
+<path d="M324 48 Q393 8 458 32" stroke="#dbe9df" stroke-dasharray="4 7" fill="none" opacity=".65"/>
+<path d="M439 37 l29 -10 -10 -8 5 -3 18 9 23 -7 q9 -2 6 4 l-28 12 -8 21 -6 2 1 -19 -18 5 -9 -2Z" fill="#e9eee1"/>
+<path d="M47 150 H445" stroke="#e5c79d" stroke-width="3" stroke-linecap="round"/>
+</svg></div></header><main>
+<div class="local-strip">
+<svg class="guardian-icon" viewBox="0 0 64 64" role="img" aria-label="風獅爺風格守護意象"><path d="M15 58V46Q16 33 23 31H41Q49 35 49 46V58" fill="#b0aa91"/><path d="M19 19L15 8L27 13M45 19L49 8L37 13" fill="#b0aa91" stroke="#696e60" stroke-width="2"/><path d="M15 24Q15 10 32 10Q49 10 49 24V32Q45 44 32 44Q19 44 15 32Z" fill="#c8bfa2" stroke="#737764" stroke-width="2"/><path d="M21 23L28 20M36 20L43 23" stroke="#575e51" stroke-width="3" stroke-linecap="round"/><circle cx="25" cy="26" r="2" fill="#3a4b42"/><circle cx="39" cy="26" r="2" fill="#3a4b42"/><path d="M28 32Q32 27 36 32L32 35Z" fill="#747d68"/><path d="M24 36Q32 42 40 36" fill="none" stroke="#596653" stroke-width="2"/><path d="M18 43Q32 51 46 43L42 52L32 49L22 52Z" fill="#b56048"/><path d="M24 52V58M40 52V58" stroke="#737764" stroke-width="3"/><rect x="11" y="58" width="42" height="4" rx="2" fill="#747c65"/></svg>
+<div><strong>風獅守望・海島航程</strong><span>以金門風獅爺、閩南燕尾屋脊與海島色彩為設計靈感。</span></div></div>
 <p class="notice">依官方月班表計算之<strong>預定班次，非實際起降紀錄</strong>。資料整理後內嵌於本頁，自動統計；不會連線更新。已排除班表明列的取消班次，未涵蓋臨時取消、延誤或增班。</p>
 <div class="cards"><div class="card"><span>篩選範圍 · 抵達金門</span><b id="arr">—</b>預定進場班次</div><div class="card"><span>篩選範圍 · 離開金門</span><b id="dep">—</b>預定離場班次</div><div class="card"><span>篩選範圍 · 合計</span><b id="total">—</b>預定起降架次</div></div>
 <section><h2>探索這一週</h2><div class="filters"><label>日期<select id="date"><option value="">全週</option></select></label><label>航空公司<select id="airline"><option value="">全部航空公司</option><option>華信航空</option><option>立榮航空</option></select></label><label>對端機場<select id="route"><option value="">全部航線</option></select></label><label>方向<select id="dir"><option value="">進場與離場</option><option>進場</option><option>離場</option></select></label><label>航班搜尋<input id="query" placeholder="例如 B7-8921"></label><button id="reset">重設篩選</button><button id="export">匯出篩選結果 CSV</button></div><p id="status" aria-live="polite"></p></section>
@@ -17,7 +55,7 @@
 七、AI調整過程：從自動抓取實際歷史航班的構想，經資料查找後改用可查證的官方月班表；加入資料性質說明、取消排除與進出獨立統計，避免把預定班表誤當實際起降。
 八、驗收：確認全週統計；選擇10/15高雄航線檢查兩筆取消未列入統計；選擇10/17澎湖確認進出各一班；測試組合篩選、搜尋、重設與CSV下載。請自行實測並記錄結果。
 網站網址：（發布後填入）
-操作截圖：（貼上實際網站截圖）</textarea></details></section></main><footer>KNH · 官方班表資料整理 × 互動統計　／　2026 年 10 月</footer>
+操作截圖：（貼上實際網站截圖）</textarea></details></section></main><footer>金門・風獅守望，海風相伴　｜　KNH 航班統計 · 2026 年 10 月</footer>
 <script>
 'use strict';
 const defs=[];
