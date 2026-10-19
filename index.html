@@ -18,6 +18,25 @@ section,.card{border-color:#e3ddd1}.card b{color:#236b70}.card{border-top:3px so
 footer{background:#eae3d5;color:#667568;letter-spacing:1px}
 @media(max-width:650px){.kinmen-scene{grid-template-columns:1fr;gap:8px}.island-caption strong{font-size:20px}.kinmen-art{max-height:135px}.local-strip{padding:12px}}
 
+
+/* 航空主題：跑道、飛行航跡與進出場標記 */
+.flight-ribbon{position:relative;max-width:1180px;margin:22px auto 0;height:55px;border-top:1px solid #ffffff24;display:flex;align-items:center;justify-content:space-between;overflow:hidden;color:#d8e8e7;font-size:12px;letter-spacing:2px;z-index:1}
+.flight-ribbon:before{content:"";position:absolute;left:110px;right:110px;top:28px;border-top:1px dashed #c3dbd56b}
+.flight-ribbon b{font-size:18px;color:#f7dca4;letter-spacing:3px}
+.flying-mark{position:absolute;left:20%;top:9px;width:32px;height:32px;color:#f7dca4;animation:flight-drift 12s ease-in-out infinite}
+.flying-mark svg{width:100%;height:100%;transform:rotate(90deg);filter:drop-shadow(0 3px 4px #102b4555)}
+@keyframes flight-drift{0%,100%{left:20%;opacity:.65}50%{left:74%;opacity:1}}
+.card{position:relative;overflow:hidden;padding-top:25px}
+.card .air-icon{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;background:#e7f1ee;border-radius:11px;color:#23747a;margin-bottom:12px}
+.air-icon svg{width:25px;height:25px}.air-icon.arriving svg{transform:rotate(135deg)}.air-icon.departing svg{transform:rotate(45deg)}
+.card:nth-child(2) .air-icon{color:#4974ad;background:#e9eff7}.card:nth-child(3) .air-icon{color:#95623e;background:#f4ecdd}
+.runway-band{display:flex;align-items:center;gap:16px;background:#263e44;color:#d6e7e6;border-radius:12px;padding:16px 20px;margin:0 0 20px;border:1px solid #486068}
+.runway-band .runway-track{position:relative;flex:1;min-width:60px;height:26px;border-top:1px solid #c3d3ce66;border-bottom:1px solid #c3d3ce66}
+.runway-track:before{content:"";position:absolute;left:0;right:0;top:11px;height:3px;background:repeating-linear-gradient(90deg,#d7ded0 0 22px,transparent 22px 42px)}
+.runway-band strong{font-size:13px;letter-spacing:2px;white-space:nowrap}.runway-band small{color:#d2ddd7;font-size:12px;white-space:nowrap}
+.aviation-heading{display:flex;align-items:center;gap:10px}.aviation-heading svg{width:22px;height:22px;color:#277981;transform:rotate(45deg)}
+@media(prefers-reduced-motion:reduce){.flying-mark{animation:none;left:48%}}
+@media(max-width:600px){.flight-ribbon{font-size:10px;letter-spacing:1px}.flight-ribbon:before{left:90px;right:95px}.runway-band{padding:13px 14px;gap:12px}.runway-band small{display:none}.card .air-icon{width:32px;height:32px}.card .air-icon svg{width:22px;height:22px}}
 </style><header><small>KNH / WEEKLY FLIGHT EXPLORER</small><h1>金門機場每週航班統計</h1><p>2026 / 10 / 12 — 10 / 18　星期一至星期日 · 臺灣時間</p><div class="kinmen-scene"><div class="island-caption"><strong>海風起，從金門出發。</strong><span>燕尾紅磚、風獅守望，把海島日常帶進每一次起降。</span></div>
 <svg class="kinmen-art" viewBox="0 0 640 190" role="img" aria-label="金門意象插畫：燕尾屋脊、紅磚古厝、海浪與飛機">
 <circle cx="520" cy="46" r="29" fill="#efd09b"/>
@@ -35,14 +54,14 @@ footer{background:#eae3d5;color:#667568;letter-spacing:1px}
 <path d="M324 48 Q393 8 458 32" stroke="#dbe9df" stroke-dasharray="4 7" fill="none" opacity=".65"/>
 <path d="M439 37 l29 -10 -10 -8 5 -3 18 9 23 -7 q9 -2 6 4 l-28 12 -8 21 -6 2 1 -19 -18 5 -9 -2Z" fill="#e9eee1"/>
 <path d="M47 150 H445" stroke="#e5c79d" stroke-width="3" stroke-linecap="round"/>
-</svg></div></header><main>
+</svg></div><div class="flight-ribbon" aria-label="金門機場航空主題裝飾"><span><b>KNH</b> 金門</span><span class="flying-mark" aria-hidden="true"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M29 5Q32 0 35 5L37 24L57 37V42L37 35L36 51L44 57V61L32 57L20 61V57L28 51L27 35L7 42V37L27 24Z" fill="currentColor"/></svg></span><span>起飛 · 抵達 · 相聚</span></div></header><main>
 <div class="local-strip">
 <svg class="guardian-icon" viewBox="0 0 64 64" role="img" aria-label="風獅爺風格守護意象"><path d="M15 58V46Q16 33 23 31H41Q49 35 49 46V58" fill="#b0aa91"/><path d="M19 19L15 8L27 13M45 19L49 8L37 13" fill="#b0aa91" stroke="#696e60" stroke-width="2"/><path d="M15 24Q15 10 32 10Q49 10 49 24V32Q45 44 32 44Q19 44 15 32Z" fill="#c8bfa2" stroke="#737764" stroke-width="2"/><path d="M21 23L28 20M36 20L43 23" stroke="#575e51" stroke-width="3" stroke-linecap="round"/><circle cx="25" cy="26" r="2" fill="#3a4b42"/><circle cx="39" cy="26" r="2" fill="#3a4b42"/><path d="M28 32Q32 27 36 32L32 35Z" fill="#747d68"/><path d="M24 36Q32 42 40 36" fill="none" stroke="#596653" stroke-width="2"/><path d="M18 43Q32 51 46 43L42 52L32 49L22 52Z" fill="#b56048"/><path d="M24 52V58M40 52V58" stroke="#737764" stroke-width="3"/><rect x="11" y="58" width="42" height="4" rx="2" fill="#747c65"/></svg>
 <div><strong>風獅守望・海島航程</strong><span>以金門風獅爺、閩南燕尾屋脊與海島色彩為設計靈感。</span></div></div>
 <p class="notice">依官方月班表計算之<strong>預定班次，非實際起降紀錄</strong>。資料整理後內嵌於本頁，自動統計；不會連線更新。已排除班表明列的取消班次，未涵蓋臨時取消、延誤或增班。</p>
-<div class="cards"><div class="card"><span>篩選範圍 · 抵達金門</span><b id="arr">—</b>預定進場班次</div><div class="card"><span>篩選範圍 · 離開金門</span><b id="dep">—</b>預定離場班次</div><div class="card"><span>篩選範圍 · 合計</span><b id="total">—</b>預定起降架次</div></div>
-<section><h2>探索這一週</h2><div class="filters"><label>日期<select id="date"><option value="">全週</option></select></label><label>航空公司<select id="airline"><option value="">全部航空公司</option><option>華信航空</option><option>立榮航空</option></select></label><label>對端機場<select id="route"><option value="">全部航線</option></select></label><label>方向<select id="dir"><option value="">進場與離場</option><option>進場</option><option>離場</option></select></label><label>航班搜尋<input id="query" placeholder="例如 B7-8921"></label><button id="reset">重設篩選</button><button id="export">匯出篩選結果 CSV</button></div><p id="status" aria-live="polite"></p></section>
-<section><h2>每日班次比較</h2><p class="legend">🟩 進場　🟦 離場　｜點選日期查看明細；圖表保留全週，套用其他篩選條件。</p><div class="chartwrap"><div id="chart"></div></div></section>
+<div class="cards"><div class="card"><div class="air-icon arriving"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M29 5Q32 0 35 5L37 24L57 37V42L37 35L36 51L44 57V61L32 57L20 61V57L28 51L27 35L7 42V37L27 24Z" fill="currentColor"/></svg></div><br><span>篩選範圍 · 抵達金門</span><b id="arr">—</b>預定進場班次</div><div class="card"><div class="air-icon departing"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M29 5Q32 0 35 5L37 24L57 37V42L37 35L36 51L44 57V61L32 57L20 61V57L28 51L27 35L7 42V37L27 24Z" fill="currentColor"/></svg></div><br><span>篩選範圍 · 離開金門</span><b id="dep">—</b>預定離場班次</div><div class="card"><div class="air-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M29 5Q32 0 35 5L37 24L57 37V42L37 35L36 51L44 57V61L32 57L20 61V57L28 51L27 35L7 42V37L27 24Z" fill="currentColor"/></svg></div><br><span>篩選範圍 · 合計</span><b id="total">—</b>預定起降架次</div></div>
+<div class="runway-band" aria-label="航空主題跑道裝飾"><strong>金門起降日誌</strong><div class="runway-track" aria-hidden="true"></div><small>每個航班，連起一段旅程</small></div><section><h2>探索這一週</h2><div class="filters"><label>日期<select id="date"><option value="">全週</option></select></label><label>航空公司<select id="airline"><option value="">全部航空公司</option><option>華信航空</option><option>立榮航空</option></select></label><label>對端機場<select id="route"><option value="">全部航線</option></select></label><label>方向<select id="dir"><option value="">進場與離場</option><option>進場</option><option>離場</option></select></label><label>航班搜尋<input id="query" placeholder="例如 B7-8921"></label><button id="reset">重設篩選</button><button id="export">匯出篩選結果 CSV</button></div><p id="status" aria-live="polite"></p></section>
+<section><h2 class="aviation-heading"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M29 5Q32 0 35 5L37 24L57 37V42L37 35L36 51L44 57V61L32 57L20 61V57L28 51L27 35L7 42V37L27 24Z" fill="currentColor"/></svg>每日班次比較</h2><p class="legend">🟩 進場　🟦 離場　｜點選日期查看明細；圖表保留全週，套用其他篩選條件。</p><div class="chartwrap"><div id="chart"></div></div></section>
 <section><h2>航班明細</h2><p>「取消」列保留供查核，不計入卡片與圖表。此頁不提供訂位或即時飛航狀態。</p><div class="tablewrap"><table><thead><tr><th>日期</th><th>航班</th><th>航空公司</th><th>方向</th><th>航線</th><th>班表狀態</th></tr></thead><tbody id="rows"></tbody></table></div></section>
 <section><details open><summary>資料來源與統計方法</summary><p><a href="https://www.kma.gov.tw/UploadFile/20260930112018.pdf" target="_blank" rel="noopener">金門航空站：115 年（2026 年）10 月份班機時刻表 PDF ↗</a><br>整理日期：2026/10/19。日期範圍固定為 2026/10/12–10/18。</p><ul><li>按每一航班的「飛行日期」逐日展開，套用「僅飛」及「取消」備註。每個日期、方向、航班編號只計一次；每次起飛或降落算一架次。</li><li>備註「某日為加班機」表示該日的航班性質，不等於僅在那些日期飛行；只有「僅飛」才限制日期。時間與機型調整不改變班次數。</li><li>10/15 的 B7-8921、B7-8922 列為取消；10/17 納入澎湖 B7-8995、B7-8996。</li><li>進出班次獨立計算。B7-9206 依原表每日、B7-9208 依原表週一四五日計入；不因與對向班次不對稱而自行改表。若原表有誤，須由航空公司確認。</li><li>範圍為該官方月班表列出的民航班機，不代表軍機、所有非定期航班或機場完整實際起降量。</li></ul></details></section>
 <section><details><summary>作業規格文字與操作驗證</summary><p>可選取下方文字複製至作業文字輸入區，並補上自己的網站網址、姓名學號與實測截圖。</p><textarea readonly id="spec">主題：金門機場每週航班統計
